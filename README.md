@@ -4,6 +4,8 @@ An experimental interactive WebGL playground recreating the premium, glossy, and
 
 This repository was fully **vibe coded** by the agentic AI coding assistant **Antigravity** powered by the **Gemini 3.5 Flash** model. It serves as an experimental case study demonstrating the capabilities of advanced agentic AI tools in building complex, high-performance WebGL graphics pipelines and offscreen browser video encoders from scratch.
 
+![Liquid Metal Playground Preview](https://github.com/user-attachments/assets/0ee1dfb5-3902-4d4e-871e-2bec6dbd8977)
+
 ---
 
 ## 🌟 Features
