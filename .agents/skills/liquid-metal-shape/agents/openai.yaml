@@ -1,0 +1,4 @@
+interface:
+  display_name: "Liquid Metal Shape"
+  short_description: "Apply liquid-metal shaders to flat SVG shapes"
+  default_prompt: "Use $liquid-metal-shape to give this SVG or flat shape a liquid metal appearance."

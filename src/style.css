@@ -1,0 +1,219 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #000000;
+  color: #ffffff;
+  overflow: hidden;
+}
+
+#app {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Draggable Floating Control Panel */
+#control-panel {
+  position: absolute;
+  right: 24px;
+  top: 24px;
+  width: 320px;
+  height: auto;
+  max-height: calc(100vh - 48px);
+  background: rgba(20, 20, 20, 0.8);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  z-index: 100;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+}
+
+#tweakpane-container {
+  width: 100%;
+  padding: 6px;
+  overflow-y: auto;
+}
+
+/* Make Tweakpane Title Header Draggable */
+.tp-rotv_h {
+  cursor: move !important;
+  user-select: none;
+}
+
+/* Override tweakpane custom properties for a more Apple-like look */
+:root {
+  --tp-base-background-color: transparent;
+  --tp-base-shadow-color: transparent;
+  --tp-button-background-color: rgba(255, 255, 255, 0.1);
+  --tp-button-background-color-active: rgba(255, 255, 255, 0.2);
+  --tp-button-background-color-focus: rgba(255, 255, 255, 0.15);
+  --tp-button-background-color-hover: rgba(255, 255, 255, 0.15);
+  --tp-button-foreground-color: #fff;
+  --tp-container-background-color: transparent;
+  --tp-container-background-color-active: transparent;
+  --tp-container-background-color-focus: transparent;
+  --tp-container-background-color-hover: transparent;
+  --tp-container-foreground-color: #aaa;
+  --tp-groove-foreground-color: rgba(255, 255, 255, 0.1);
+  --tp-input-background-color: rgba(0, 0, 0, 0.5);
+  --tp-input-background-color-active: rgba(0, 0, 0, 0.7);
+  --tp-input-background-color-focus: rgba(0, 0, 0, 0.6);
+  --tp-input-background-color-hover: rgba(0, 0, 0, 0.6);
+  --tp-input-foreground-color: #fff;
+  --tp-label-foreground-color: #eee;
+  --tp-monitor-background-color: rgba(0, 0, 0, 0.3);
+  --tp-monitor-foreground-color: #aaa;
+}
+
+/* Preview Area */
+#preview-area {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #0a0a0a; /* Pure dark solid background as requested */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+#webgl-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Custom Logo Selector styling inside Tweakpane */
+.logo-selector-wrapper {
+  padding: 8px 10px 12px 10px;
+}
+
+.logo-options {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+}
+
+.logo-option {
+  aspect-ratio: 1;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  padding: 8px;
+  outline: none;
+}
+
+.logo-option img, .logo-option svg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.4;
+  transition: all 0.3s ease;
+}
+
+.logo-option:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+.logo-option:hover img, .logo-option:hover svg {
+  opacity: 0.8;
+}
+
+.logo-option.active {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.45);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1), 
+              inset 0 0 6px rgba(255, 255, 255, 0.05);
+  transform: translateY(-1px);
+}
+
+.logo-option.active img, .logo-option.active svg {
+  opacity: 1;
+  filter: brightness(0) invert(1) drop-shadow(0 0 4px rgba(255, 255, 255, 0.6));
+}
+
+.logo-option:active {
+  transform: translateY(0);
+}
+
+/* Custom Record Button Styling within Tweakpane */
+button#record-btn.record-btn {
+  width: 100% !important;
+  height: auto !important;
+  padding: 10px 12px !important;
+  background: linear-gradient(135deg, rgba(255, 69, 58, 0.15), rgba(255, 45, 85, 0.2)) !important;
+  border: 1px solid rgba(255, 69, 58, 0.35) !important;
+  border-radius: 6px !important;
+  color: #ff453a !important;
+  font-family: inherit !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  cursor: pointer !important;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+  margin-top: 12px !important;
+  outline: none !important;
+  box-shadow: 0 4px 12px rgba(255, 69, 58, 0.08) !important;
+}
+
+button#record-btn.record-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, rgba(255, 69, 58, 0.3), rgba(255, 45, 85, 0.35)) !important;
+  border-color: rgba(255, 69, 58, 0.6) !important;
+  color: #fff !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 20px rgba(255, 69, 58, 0.2) !important;
+}
+
+button#record-btn.record-btn:active:not(:disabled) {
+  transform: translateY(0) !important;
+}
+
+button#record-btn.record-btn:disabled {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  color: rgba(255, 255, 255, 0.35) !important;
+  cursor: not-allowed !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+/* Loading Spinner styling */
+.spinner {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  border-top-color: currentColor;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
