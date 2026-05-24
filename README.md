@@ -6,6 +6,8 @@ This repository was fully **vibe coded** by the agentic AI coding assistant **An
 
 ![Liquid Metal Playground Preview](https://github.com/user-attachments/assets/0ee1dfb5-3902-4d4e-871e-2bec6dbd8977)
 
+🔗 **Live Demo:** Try the interactive playground online at **[https://liquid-metal-playground.vercel.app/](https://liquid-metal-playground.vercel.app/)**
+
 ---
 
 ## 🌟 Features
