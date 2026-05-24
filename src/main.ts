@@ -3,6 +3,12 @@ import { Pane } from 'tweakpane';
 import { Muxer, ArrayBufferTarget } from 'mp4-muxer';
 import { generatePoissonMask } from './webgl/poisson';
 import { vertexShaderSource, fragmentShaderSource } from './webgl/shaders';
+import { inject as injectAnalytics } from '@vercel/analytics';
+import { injectSpeedInsights } from '@vercel/speed-insights';
+
+// Initialize Vercel Analytics & Speed Insights
+injectAnalytics();
+injectSpeedInsights();
 
 const PARAMS = {
     logo: '/swift.svg',
